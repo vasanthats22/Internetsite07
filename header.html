@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NetConnect Header - Dropdown Fixed</title>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Poppins", sans-serif; }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 1000; background: transparent; }
+  nav {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    height: 68px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .logo img { width: 120px; height: auto; display:block; }
+
+  /* Desktop nav links */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    align-items: center;
+  }
+  .nav-links li { position: relative; }
+  .nav-links a {
+    color: #000; text-decoration: none; font-weight: 600; font-size: 16px;
+    padding: 6px 8px; display:inline-block;
+  }
+  .nav-links a:hover { color: green; }
+
+  /* Dropdown arrow */
+  .dropbtn .arrow {
+    font-size: 12px;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+  }
+  .dropdown.active .arrow {
+    transform: rotate(180deg);
+  }
+
+  /* Dropdown content */
+  .dropdown-content {
+    display: none;
+    background: #fff;
+    border-radius: 6px;
+    min-width: 160px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 500;
+  }
+  .dropdown-content a { display:block; padding:10px 14px; color:#000; font-weight:500; }
+  .dropdown-content a:hover { background:#f5f5f5; color:green; }
+
+  /* Desktop hover dropdown */
+  @media (min-width: 901px) {
+    .dropdown:hover .dropdown-content {
+      display: block;  /* stays open when hovering anywhere inside <li> */
+    }
+    .dropdown {
+      position: relative;
+    }
+  }
+
+  /* Hamburger */
+  .menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+  .menu-toggle-inner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px; font-size: 24px; line-height: 1;
+    user-select: none;
+  }
+
+  /* MOBILE STYLES */
+  @media (max-width: 900px) {
+    .menu-toggle { display: block; }
+
+    /* left-side panel */
+    .nav-links {
+      position: fixed;
+      top: 0;
+      left: -110%;
+      width: 65%;
+      height: 100vh;
+      background: #fff;
+      z-index: 2000;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 86px 22px;
+      gap: 14px;
+      transition: left 260ms cubic-bezier(.2,.9,.2,1);
+      overflow-y: auto;
+    }
+    .nav-links.active { left: 0; }
+
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      width: 100%;
+      display: block;
+      font-size: 18px;
+      padding: 10px 0;
+      color: #111;
+    }
+
+    /* mobile submenu */
+    .dropdown-content {
+      position: relative;
+      display: none;
+      top: 0; left: 0;
+      width: 100%;
+      background: #f9f9f9;
+      border-radius: 8px;
+      margin-top: 6px;
+      padding-left: 12px;
+      box-shadow: none;
+    }
+    .dropdown.active > .dropdown-content { display: block; }
+    .dropdown-content a { padding: 8px 0; font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a href="index.html"><img src="Stacklylogoo.jpeg" alt="Stackly Logo"></a>
+    </div>
+
+    <!-- hamburger -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span class="menu-toggle-inner" id="menu-toggle-inner">☰</span>
+    </button>
+
+    <ul id="nav-links" class="nav-links" role="menu" aria-hidden="true">
+      <li id="home-dropdown" class="dropdown" role="none">
+        <a href="index.html" id="home-btn" class="dropbtn" role="menuitem">
+          Home <span id="home-arrow" class="arrow">▼</span>
+        </a>
+
+        <div class="dropdown-content" id="home-content" role="menu">
+          <a href="Home2.html" role="menuitem">Home 2</a>
+        </div>
+      </li>
+
+      <li role="none"><a href="Dashboard.html" role="menuitem">Dashboard</a></li>
+      <li role="none"><a href="Plans.html" role="menuitem">Plans</a></li>
+      <li role="none"><a href="Services.html" role="menuitem">Services</a></li>
+      <li role="none"><a href="Coverage.html" role="menuitem">Coverage</a></li>
+      <li role="none"><a href="Support.html" role="menuitem">Support</a></li>
+      <li role="none"><a href="Contact.html" role="menuitem">Contact</a></li>
+      <li role="none"><a href="login.html" role="menuitem">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+(function() {
+  const toggleBtn = document.getElementById('menu-toggle');
+  const toggleInner = document.getElementById('menu-toggle-inner');
+  const navLinks = document.getElementById('nav-links');
+  const homeBtn = document.getElementById('home-btn');
+  const homeDropdown = document.getElementById('home-dropdown');
+  const homeArrow = document.getElementById('home-arrow');
+
+  function isMobile() { return window.innerWidth <= 900; }
+
+  // Toggle mobile menu
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const opening = navLinks.classList.toggle('active');
+    toggleInner.textContent = opening ? '✕' : '☰';
+    toggleBtn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+    navLinks.setAttribute('aria-hidden', opening ? 'false' : 'true');
+    if (!opening) homeDropdown.classList.remove('active');
+  });
+
+  // Mobile submenu toggle on arrow click
+  homeArrow.addEventListener('click', function(e) {
+    if (!isMobile()) return;
+    e.preventDefault();
+    e.stopPropagation();
+    homeDropdown.classList.toggle('active');
+  });
+
+  // Close panel when clicking outside
+  document.addEventListener('click', function() {
+    if (isMobile()) {
+      navLinks.classList.remove('active');
+      toggleInner.textContent = '☰';
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      navLinks.setAttribute('aria-hidden', 'true');
+      homeDropdown.classList.remove('active');
+    }
+  });
+
+  // Prevent clicks inside nav from closing panel
+  navLinks.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+
+  // Close mobile menu when clicking non-dropbtn links
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', function(e) {
+      if (a === homeBtn && isMobile()) return; // Home text navigates normally
+      if (isMobile()) {
+        navLinks.classList.remove('active');
+        toggleInner.textContent = '☰';
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        navLinks.setAttribute('aria-hidden', 'true');
+        homeDropdown.classList.remove('active');
+      }
+    });
+  });
+
+  // Resize handler
+  window.addEventListener('resize', function() {
+    if (!isMobile()) {
+      navLinks.classList.remove('active');
+      homeDropdown.classList.remove('active');
+      toggleInner.textContent = '☰';
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      navLinks.setAttribute('aria-hidden', 'false');
+    } else {
+      navLinks.setAttribute('aria-hidden', navLinks.classList.contains('active') ? 'false' : 'true');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

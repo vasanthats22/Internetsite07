@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Get Connected | Stackly Internet</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:100%; overflow-x:hidden; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#333; background:#f5f7fa; }
+a { text-decoration:none; }
+
+/* HEADER */
+header { position: fixed; top: 0; width: 100%; z-index: 1000; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.05);}
+nav { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; max-width:1200px; margin:auto; }
+.logo img { width:120px; display:block; }
+.nav-links { list-style:none; display:flex; gap:20px; align-items:center; }
+.nav-links li { position:relative; }
+.nav-links a { color:#000; font-weight:600; font-size:16px; padding:6px 8px; display:inline-block; }
+.nav-links a:hover { color:#4CAF50; }
+
+/* Dropdown */
+.dropdown { display:flex; align-items:center; position:relative; }
+.dropdown .dropbtn-text { display:flex; align-items:center; gap:5px; }
+.dropdown .arrow { font-size:12px; cursor:pointer; transition:0.3s; }
+.dropdown.active .arrow { transform:rotate(180deg); }
+.dropdown-content { display:none; position:absolute; top:100%; left:0; background:#fff; min-width:160px; border-radius:6px; box-shadow:0 8px 20px rgba(0,0,0,0.08); z-index:1000; }
+.dropdown-content a { display:block; padding:10px 14px; color:#000; font-weight:500; }
+.dropdown-content a:hover { background:#f5f5f5; color:#4CAF50; }
+@media(min-width:901px){ .dropdown:hover .dropdown-content{ display:block; } }
+
+/* Hamburger */
+.menu-toggle { display:none; background:transparent; border:none; cursor:pointer; }
+.menu-toggle-inner { font-size:28px; }
+
+/* HERO */
+.page-hero {
+  background:
+    linear-gradient(rgba(0, 75, 135, 0.6), rgba(0, 75, 135, 0.6));
+    /* url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; */
+  background-image: url('Getconnected2.webp');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+    color:#fff;
+  text-align:center;
+  padding:140px 20px;
+}
+.page-hero .eyebrow { color:#7be0b5; font-weight:700; letter-spacing:1px; margin-bottom:12px; text-transform:uppercase; }
+.page-hero h1 { font-size:2.8em; line-height:1.05; margin-bottom:14px; font-weight:900; }
+.page-hero p { max-width:900px; margin:auto; color:rgba(255,255,255,0.92); font-size:1.05em; line-height:1.6; }
+
+/* CONNECT FORM SECTION */
+.connect-section { max-width:1200px; margin:60px auto; padding:40px 5%; display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+.connect-info { background: linear-gradient(180deg,#f7fffb,#e2f7f1); padding:28px; border-radius:14px; box-shadow:0 10px 25px rgba(8,20,30,0.06); }
+.connect-info h2 { font-size:1.8em; margin-bottom:12px; color:#0a0a0a; }
+.connect-info p { color:#556; line-height:1.7; font-size:1em; margin-bottom:12px; }
+.connect-form { background:#fff; padding:28px; border-radius:14px; box-shadow:0 10px 25px rgba(8,20,30,0.06); }
+.connect-form h2 { margin-bottom:20px; color:#2980b9; }
+.input-field { margin-bottom:18px; position:relative; }
+.input-field input, .input-field textarea {
+  width:100%; padding:12px 15px; border-radius:8px; border:1px solid #ccc; font-size:1em; transition:border 0.3s;
+}
+.input-field input:focus, .input-field textarea:focus { border-color:#2980b9; outline:none; }
+.input-field small { color:red; display:block; margin-top:5px; font-size:0.85em; }
+.connect-form button { width:100%; padding:12px; border:none; background:#2980b9; color:white; font-size:1.1em; font-weight:600; border-radius:8px; cursor:pointer; transition:background 0.3s ease; }
+.connect-form button:hover { background:#2573a6; }
+
+/* FOOTER */
+.footer { background:linear-gradient(135deg,#0a3d91,#1e90ff); color:#fff; padding:50px 20px; }
+.footer-container { max-width:1200px; margin:auto; display:flex; justify-content:space-between; flex-wrap:wrap; }
+.footer-section { flex:1; min-width:260px; margin:15px 20px; }
+.footer-section h3 { color:#ffcc00; margin-bottom:15px; font-size:18px; font-weight:600; }
+.footer-section p, .footer-section ul li a { color:#d3d3d3; font-size:15px; }
+.footer-section ul { list-style:none; padding:0; }
+.footer-section ul li { margin-bottom:10px; }
+.footer-section ul li a:hover { color:#00ffae; }
+.social-icons a { color:#b8c6ff; margin-right:12px; font-size:18px; transition:0.3s; }
+.social-icons a:hover { color:#00ffae; }
+.footer-bottom { text-align:center; padding-top:20px; border-top:1px solid rgba(255,255,255,0.15); margin-top:30px; }
+.footer-bottom p { color:#c7c7c7; font-size:14px; }
+
+/* RESPONSIVE */
+@media(max-width:1024px){ .connect-section { grid-template-columns:1fr; gap:24px; } }
+@media(max-width:768px){ .page-hero { padding:110px 18px; } .page-hero h1{font-size:2.2em;} }
+
+/* MOBILE MENU */
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  .nav-links{position:fixed; top:0; left:-100%; width:75%; height:100vh; background:#fff; flex-direction:column; align-items:flex-start; padding:80px 25px; gap:15px; transition:left 0.3s ease; overflow-y:auto; box-shadow:5px 0 20px rgba(0,0,0,0.2);}
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%; display:flex; flex-direction:column; position:relative;}
+  .nav-links a{font-size:18px; display:block; width:100%; padding:10px 0;}
+  .dropdown-content { position:static; display:none; width:100%; margin-top:5px; padding-left:20px; border-left:3px solid #4CAF50; border-radius:6px; background:#f9f9f9;}
+  .dropdown.active>.dropdown-content{display:block;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<nav>
+  <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo"></a></div>
+  <button id="menu-toggle" class="menu-toggle"><span class="menu-toggle-inner">☰</span></button>
+  <ul id="nav-links" class="nav-links">
+    <li class="dropdown">
+      <a href="Home2.html" class="dropbtn-text">Home <span class="arrow">▼</span></a>
+      <div class="dropdown-content">
+        <a href="index.html">Home 1</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="speedtest.html">Speed Test</a></li>
+    <li><a href="support2.html">Support</a></li>
+    <li><a href="login2.html">Login</a></li>
+    <li><a href="getconnected.html" style="color:#4CAF50;">Get Connected</a></li>
+  </ul>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="eyebrow">Connect With Stackly Internet Site</div>
+  <h1>Get high-speed internet at your doorstep</h1>
+  <p>Fill out the form to schedule installation or get more information about Stackly’s fiber internet plans.</p>
+</section>
+
+<!-- CONNECT FORM -->
+<section class="connect-section">
+  <div class="connect-info">
+    <h2>Why Get Connected?</h2>
+    <p>Enjoy fast, reliable, and secure internet with fiber-optic connectivity. Ideal for remote work, streaming, gaming, and smart homes.</p>
+    <p>24/7 support and easy-to-use apps ensure you stay connected without interruptions.</p>
+  </div>
+
+  <div class="connect-form">
+    <h2>Get Connected Form</h2>
+    <form id="getConnectedForm">
+      <div class="input-field">
+        <input type="text" id="name" placeholder="Your Name" maxlength="50" required />
+        <small id="name-msg"></small>
+      </div>
+      <div class="input-field">
+        <input type="email" id="email" placeholder="Email" required />
+        <small id="email-msg"></small>
+      </div>
+      <div class="input-field">
+        <input type="text" id="phone" placeholder="Phone Number" maxlength="10" required />
+        <small id="phone-msg"></small>
+      </div>
+      <div class="input-field">
+        <textarea id="message" placeholder="Message" rows="4" required></textarea>
+        <small id="message-msg"></small>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo" style="width:150px;"></a></div>
+      <p>Stackly Internet provides high-speed, reliable, and secure internet solutions across India.</p>
+      <div class="social-icons">
+        <a href="402error.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="402error.html"><i class="fab fa-linkedin-in"></i></a>
+        <a href="402error.html"><i class="fab fa-twitter"></i></a>
+        <a href="402error.html"><i class="fab fa-instagram"></i></a>
+        <a href="402error.html"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="Home2.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="packages.html">Packages</a></li>
+        <li><a href="speedtest.html">Speed Test</a></li>
+        <li><a href="support2.html">Support</a></li>
+        <li><a href="login2.html">Login</a></li>
+        <li><a href="getconnected.html" style="color:#fff;">Get Connected</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p><strong>Email:</strong> support@stackly.com</p>
+      <p><strong>Phone:</strong> +91 70107 92745</p>
+      <p><strong>Location:</strong> Bengaluru, Karnataka-560068</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Stackly Internet Site. All rights reserved.</p></div>
+</footer>
+
+<script>
+// Hamburger toggle
+const toggleBtn = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+toggleBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  navLinks.classList.toggle('active');
+  toggleBtn.querySelector('.menu-toggle-inner').textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+// Mobile dropdown toggle only on arrow
+const dropdown = document.querySelector('.dropdown');
+const dropdownArrow = dropdown.querySelector('.arrow');
+dropdownArrow.addEventListener('click', e => {
+  if(window.innerWidth <= 900){
+    e.preventDefault();
+    e.stopPropagation();
+    dropdown.classList.toggle('active');
+  }
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', e => {
+  if(window.innerWidth <= 900){
+    if(!navLinks.contains(e.target) && !toggleBtn.contains(e.target)){
+      navLinks.classList.remove('active');
+      toggleBtn.querySelector('.menu-toggle-inner').textContent = '☰';
+      dropdown.classList.remove('active');
+    }
+  }
+});
+
+// FORM VALIDATION
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const phoneInput = document.getElementById('phone');
+const messageInput = document.getElementById('message');
+const nameMsg = document.getElementById('name-msg');
+const emailMsg = document.getElementById('email-msg');
+const phoneMsg = document.getElementById('phone-msg');
+const messageMsg = document.getElementById('message-msg');
+
+// Allow only letters and spaces in name
+nameInput.addEventListener('input', function() {
+  this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+});
+
+function validateName(){
+  if(nameInput.value.trim()===""){
+    nameMsg.textContent = "Name is required";
+    return false;
+  }
+  nameMsg.textContent = "";
+  return true;
+}
+
+function validateEmail(){
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(emailInput.value.trim()===""){ emailMsg.textContent = "Email is required"; return false; }
+  else if(!regex.test(emailInput.value)){ emailMsg.textContent = "Invalid email"; return false; }
+  emailMsg.textContent = ""; return true;
+}
+
+function validatePhone(){
+  const regex = /^[0-9]{10}$/;
+  if(phoneInput.value.trim()===""){ phoneMsg.textContent = "Phone is required"; return false; }
+  else if(!regex.test(phoneInput.value)){ phoneMsg.textContent = "Must be 10 digits"; return false; }
+  phoneMsg.textContent = ""; return true;
+}
+
+function validateMessage(){
+  if(messageInput.value.trim()===""){ messageMsg.textContent = "Message is required"; return false; }
+  messageMsg.textContent = ""; return true;
+}
+
+// Real-time validation
+nameInput.addEventListener('blur', validateName);
+emailInput.addEventListener('blur', validateEmail);
+phoneInput.addEventListener('blur', validatePhone);
+messageInput.addEventListener('blur', validateMessage);
+
+document.getElementById('getConnectedForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const validName = validateName();
+  const validEmail = validateEmail();
+  const validPhone = validatePhone();
+  const validMessage = validateMessage();
+
+  if(validName && validEmail && validPhone && validMessage){
+    window.location.href = "402error.html";
+  }
+});
+</script>
+
+</body>
+</html>

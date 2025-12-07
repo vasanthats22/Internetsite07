@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reset Password | Internet Site</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;overflow-x:hidden;}
+body{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:linear-gradient(120deg,#2980b9,#6dd5fa,#ffffff);color:#121212;min-height:100vh;display:flex;flex-direction:column;}
+
+/* HEADER */
+header{position:fixed;top:0;width:100%;z-index:1000;background:#fff;border-bottom:1px solid rgba(0,0,0,0.05);}
+nav{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;max-width:1200px;margin:auto;}
+.logo img{width:120px;display:block;}
+.nav-links{list-style:none;display:flex;gap:20px;align-items:center;}
+.nav-links li{position:relative;}
+.nav-links a{color:#000;font-weight:600;font-size:16px;padding:6px 8px;text-decoration:none;}
+.nav-links a:hover{color:#4CAF50;}
+.dropbtn .arrow{font-size:12px;margin-left:5px;transition:0.3s;}
+.dropdown.active .arrow{transform:rotate(180deg);}
+.dropdown-content{display:none;position:absolute;top:100%;left:0;background:#fff;min-width:160px;border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.dropdown-content a{display:block;padding:10px 14px;color:#000;text-decoration:none;}
+.dropdown-content a:hover{background:#f5f5f5;color:#4CAF50;}
+@media(min-width:901px){.dropdown:hover .dropdown-content{display:block;}}
+
+/* Hamburger */
+.menu-toggle{display:none;background:transparent;border:none;cursor:pointer;}
+.menu-toggle-inner{font-size:28px;}
+
+/* Reset Password Hero */
+.reset-hero{text-align:center;padding:80px 5% 20px;color:#121212;}
+.reset-hero h1{font-size:2.8em;font-weight:700;margin-bottom:10px;}
+.reset-hero p{font-size:1.1em;color:#121212;opacity:0.95;}
+
+/* Reset Section */
+.reset-section{display:flex;justify-content:center;align-items:center;padding:30px 5%;}
+.reset-box{background:#fff;border-radius:15px;padding:40px 35px;width:100%;max-width:400px;box-shadow:0 8px 25px rgba(0,0,0,0.15);transition:transform 0.3s ease;}
+.reset-box:hover{transform:translateY(-5px);}
+.reset-box h2{text-align:center;color:#2980b9;margin-bottom:25px;}
+.input-field{margin-bottom:20px;}
+.input-field input{width:100%;padding:12px 15px;border-radius:8px;border:1px solid #ccc;font-size:1em;transition:border 0.3s;}
+.input-field input:focus{border-color:#2980b9;outline:none;}
+.reset-box button{width:100%;padding:12px;border:none;background:#2980b9;color:#fff;font-size:1.1em;font-weight:600;border-radius:8px;cursor:pointer;transition:background 0.3s;}
+.reset-box button:hover{background:#2573a6;}
+.reset-box .links{text-align:center;margin-top:15px;}
+.reset-box .links a{color:#2980b9;text-decoration:none;font-weight:500;}
+.reset-box .links a:hover{text-decoration:underline;}
+
+/* FOOTER */
+.footer{background:linear-gradient(135deg,#0a3d91,#1e90ff);color:#fff;padding:50px 20px;margin-top:auto;}
+.footer-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap;text-align:left;}
+.footer-section{flex:1;min-width:260px;margin:15px 20px;}
+.footer-section h3{color:#ffcc00;margin-bottom:15px;font-size:18px;}
+.footer-section p,.footer-section ul li a{color:#d3d3d3;font-size:15px;text-decoration:none;}
+.footer-section ul{list-style:none;padding:0;}
+.footer-section ul li{margin-bottom:10px;}
+.footer-section ul li a:hover{color:#00ffae;}
+.social-icons a{color:#b8c6ff;margin-right:12px;font-size:18px;text-decoration:none;transition:0.3s;}
+.social-icons a:hover{color:#00ffae;}
+.footer-bottom{text-align:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15);margin-top:30px;}
+.footer-bottom p{color:#c7c7c7;font-size:14px;}
+
+/* MOBILE */
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  .nav-links{position:fixed;top:0;left:-100%;width:75%;height:100vh;background:#fff;flex-direction:column;align-items:flex-start;padding:80px 25px;gap:15px;transition:left 0.3s ease;box-shadow:5px 0 20px rgba(0,0,0,0.2);}
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%;}
+  .nav-links a{font-size:18px;width:100%;display:block;}
+  .dropdown-content{position:static;width:100%;background:#f9f9f9;margin:8px 0 8px 15px;padding:5px 0 5px 20px;border-left:3px solid #4CAF50;border-radius:6px;display:none;}
+  .dropdown.active>.dropdown-content{display:block;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo"></a></div>
+    <button id="menu-toggle" class="menu-toggle"><span class="menu-toggle-inner">☰</span></button>
+    <ul id="nav-links" class="nav-links">
+      <li class="dropdown">
+        <a href="index.html" class="dropbtn" id="home-button">Home <span class="arrow">▼</span></a>
+        <div class="dropdown-content"><a href="Home2.html">Home 2</a></div>
+      </li>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Plans.html">Plans</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Coverage.html">Coverage</a></li>
+      <li><a href="Support.html">Support</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="reset-hero">
+  <h1>Reset Your Password</h1>
+  <p>Enter your new password below to secure your account.</p>
+</section>
+
+<!-- Reset Form -->
+<section class="reset-section">
+  <div class="reset-box">
+    <h2>Create New Password</h2>
+    <form id="resetForm" action="404error.html" method="GET">
+      <div class="input-field">
+        <input type="password" id="newPassword" placeholder="New Password" minlength="6" maxlength="20" required>
+        <small id="newPassword-msg" style="color:red; display:block; margin-top:5px;"></small>
+      </div>
+      <div class="input-field">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" minlength="6" maxlength="20" required>
+        <small id="confirmPassword-msg" style="color:red; display:block; margin-top:5px;"></small>
+      </div>
+      <button type="submit">Reset Password</button>
+      <div class="links">
+        <a href="login.html">Back to Login</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+const form = document.getElementById('resetForm');
+const newPass = document.getElementById('newPassword');
+const confirmPass = document.getElementById('confirmPassword');
+const newPassMsg = document.getElementById('newPassword-msg');
+const confirmPassMsg = document.getElementById('confirmPassword-msg');
+
+form.addEventListener('submit', function(e){
+    let valid = true;
+
+    // Clear previous messages
+    newPassMsg.textContent = '';
+    confirmPassMsg.textContent = '';
+
+    if(newPass.value.length < 6){
+        newPassMsg.textContent = 'Password must be at least 6 characters.';
+        valid = false;
+    }
+
+    if(newPass.value !== confirmPass.value){
+        confirmPassMsg.textContent = 'Passwords do not match.';
+        valid = false;
+    }
+
+    if(!valid){
+        e.preventDefault(); // Stop form submission if invalid
+    }
+});
+</script>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo" style="width:150px;"></a></div>
+      <p>Stackly Internet Site provides high-speed, reliable, and secure internet services across India.</p>
+      <div class="social-icons">
+        <a href="404error.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="404error.html"><i class="fab fa-twitter"></i></a>
+        <a href="404error.html"><i class="fab fa-linkedin-in"></i></a>
+        <a href="404error.html"><i class="fab fa-instagram"></i></a>
+        <a href="404error.html"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="Plans.html">Plans</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Coverage.html">Coverage</a></li>
+        <li><a href="Support.html">Support</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p><strong>Email:</strong> support@stackly.com</p>
+      <p><strong>Phone:</strong> +91 70107 92745</p>
+      <p><strong>Location:</strong> Bengaluru, Karnataka - 560068</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Stackly Internet Site. All rights reserved.</p></div>
+</footer>
+
+</body>
+</html>

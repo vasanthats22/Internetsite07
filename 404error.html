@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 - Page Not Found | NetConnect</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width:100%; overflow-x:hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+/* HEADER */
+/* header{position:sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid rgba(0,0,0,0.05);} */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+nav{display:flex; justify-content:space-between; align-items:center; padding:12px 20px; max-width:1200px; margin:auto;}
+.logo img{width:120px; display:block;}
+.nav-links{list-style:none; display:flex; gap:20px; align-items:center;}
+.nav-links li{position:relative;}
+.nav-links a{color:#000; font-weight:600; font-size:16px; padding:6px 8px; display:inline-block; text-decoration:none;}
+.nav-links a:hover{color:#4CAF50;}
+
+/* Dropdown */
+.dropdown-content{display:none; position:absolute; top:100%; left:0; background:#fff; min-width:160px; border-radius:6px; box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.dropdown-content a{display:block; padding:10px 14px; color:#000; font-weight:500; text-decoration:none;}
+.dropdown-content a:hover{background:#f5f5f5;color:#4CAF50;}
+.dropdown.active>.dropdown-content{display:block;}
+.arrow{font-size:12px;margin-left:5px; transition:0.3s;}
+.dropdown.active .arrow{transform:rotate(180deg);}
+@media(min-width:901px){.dropdown:hover .dropdown-content{display:block;}}
+
+/* Hamburger */
+.menu-toggle{display:none;background:transparent;border:none;cursor:pointer;}
+.menu-toggle-inner{font-size:28px;}
+
+/* 404 BODY */
+body { background: linear-gradient(135deg,#00122e,#000a1a); color: #fff; display:flex; flex-direction:column; min-height:100vh; position: relative; }
+
+.glow-bg { position:absolute; width:500px; height:500px; background: radial-gradient(circle, rgba(0,200,255,0.4), transparent 70%); border-radius:50%; animation: floatGlow 6s ease-in-out infinite alternate; top:20%; left:15%; filter: blur(60px); z-index:0; }
+@keyframes floatGlow {0% {transform:translate(0,0); opacity:0.8;} 100% {transform:translate(50px,40px); opacity:1;}}
+
+main { flex:1; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; z-index:1; padding:40px 20px; }
+
+.error-box { position: relative; max-width:600px; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); border-radius:20px; padding:60px 40px; backdrop-filter: blur(10px); box-shadow:0 0 40px rgba(0,200,255,0.2); }
+.error-code { font-size:10rem; font-weight:800; background: linear-gradient(90deg, #00e5ff, #007bff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: glowText 2s infinite alternate; }
+@keyframes glowText { from { text-shadow: 0 0 20px rgba(0,224,255,0.5); } to { text-shadow:0 0 40px rgba(0,224,255,1);} }
+
+.error-title { font-size:2rem; font-weight:600; margin-top:-10px; }
+.error-text { font-size:1rem; color:#d3e1ff; margin:20px 0 35px; line-height:1.6; }
+.home-btn { background: linear-gradient(135deg, #00e5ff, #007bff); color:#fff; text-decoration:none; padding:12px 35px; border-radius:50px; font-weight:600; transition: all 0.3s ease; display:inline-block; box-shadow:0 0 20px rgba(0,200,255,0.3);}
+.home-btn:hover { transform: translateY(-3px); box-shadow:0 0 30px rgba(0,224,255,0.6);}
+
+/* FOOTER */
+footer{background:linear-gradient(135deg,#0a3d91,#1e90ff);color:#fff;padding:50px 20px;}
+.footer-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap;text-align:left;}
+.footer-section{flex:1;min-width:260px;margin:15px 20px;}
+.footer-section h3{color:#ffcc00;margin-bottom:15px;font-size:18px;font-weight:600;}
+.footer-section p,.footer-section ul li a{color:#d3d3d3;font-size:15px;text-decoration:none;}
+.footer-section ul{list-style:none;padding:0;}
+.footer-section ul li{margin-bottom:10px;}
+.footer-section ul li a:hover{color:#00ffae;}
+.social-icons a{color:#b8c6ff;margin-right:12px;font-size:18px;transition:0.3s;text-decoration:none;}
+.social-icons a:hover{color:#00ffae;}
+.footer-bottom{text-align:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15);margin-top:30px;}
+.footer-bottom p{color:#c7c7c7;font-size:14px;}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  .nav-links{position:fixed; top:0; left:-100%; width:75%; height:100vh; background:#fff; flex-direction:column; align-items:flex-start; padding:80px 25px; gap:15px; transition:left 0.3s ease; overflow-y:auto; box-shadow:5px 0 20px rgba(0,0,0,0.2);}
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%;}
+  .nav-links a{font-size:18px; display:block; width:100%; padding:10px 0;}
+  .dropdown-content{position:static; width:100%; background:#f9f9f9; margin:8px 0 8px 15px; padding:5px 0 5px 20px; border-left:3px solid #4CAF50; border-radius:6px;}
+  .dropdown.active>.dropdown-content{display:block;}
+  /* .footer-container{flex-direction:column;align-items:center;text-align:center;} */
+  .footer-container{flex-direction:column; align-items:flex-start; text-align:left;}
+
+  .footer-section{margin:15px 0;width:100%;}
+}
+
+@media(max-width:600px){
+  .error-code { font-size:6rem; }
+  .error-title { font-size:1.4rem; }
+  .error-box { padding:40px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo"></a></div>
+    <button id="menu-toggle" class="menu-toggle"><span class="menu-toggle-inner">☰</span></button>
+    <ul id="nav-links" class="nav-links">
+      <li class="dropdown">
+        <a href="index.html" class="dropbtn">Home <span class="arrow">▼</span></a>
+        <div class="dropdown-content">
+          <a href="Home2.html">Home 2</a>
+        </div>
+      </li>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Plans.html">Plans</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Coverage.html">Coverage</a></li>
+      <li><a href="Support.html">Support</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="error-box">
+    <div class="error-code">404</div>
+    <div class="error-title">Lost in the Network</div>
+    <div class="error-text">
+      Oops! The page you’re looking for doesn’t exist.<br>
+      Maybe the connection dropped — try heading back home.
+    </div>
+    <a href="index.html" class="home-btn">Back to Homepage</a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-section about">
+      <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo" style="width:150px;"></a></div>
+      <p>Stackly Internet Site provides high-speed, reliable, and secure internet solutions for homes and businesses across India.</p>
+      <div class="social-icons">
+        <a href="404error.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="404error.html"><i class="fab fa-linkedin-in"></i></a>
+        <a href="404error.html"><i class="fab fa-twitter"></i></a>
+        <a href="404error.html"><i class="fab fa-instagram"></i></a>
+        <a href="404error.html"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="Plans.html">Plans</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Coverage.html">Coverage</a></li>
+        <li><a href="Support.html">Support</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p><strong>Email:</strong> support@stackly.com</p>
+      <p><strong>Phone:</strong> +91 70107 92745</p>
+      <p><strong>Location:</strong> Bengaluru, Karnataka - 560068</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Stackly Internet Site. All rights reserved.</p></div>
+</footer>
+
+<script>
+// Hamburger toggle
+const toggleBtn = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+const dropdown = document.querySelector('.dropdown');
+const arrow = document.querySelector('.arrow');
+
+toggleBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  navLinks.classList.toggle('active');
+  toggleBtn.querySelector('.menu-toggle-inner').textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+// Mobile dropdown toggle
+arrow.addEventListener('click', e => {
+  if (window.innerWidth <= 900) {
+    e.preventDefault();
+    e.stopPropagation();
+    dropdown.classList.toggle('active');
+  }
+});
+
+// Click outside closes menu
+document.addEventListener('click', e => {
+  if (window.innerWidth <= 900 && !navLinks.contains(e.target) && !toggleBtn.contains(e.target)) {
+    navLinks.classList.remove('active');
+    toggleBtn.querySelector('.menu-toggle-inner').textContent = '☰';
+    dropdown.classList.remove('active');
+  }
+});
+</script>
+
+</body>
+</html>

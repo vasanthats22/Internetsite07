@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next-Gen Internet Landing Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+  
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:100%; overflow-x:hidden; }
+body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#333; background:#f5f7fa; }
+a { text-decoration:none; }
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+nav { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; max-width:1200px; margin:auto; }
+.logo img { width:120px; height:auto; display:block; }
+
+.nav-links { list-style:none; display:flex; gap:20px; align-items:center; }
+.nav-links li { position:relative; }
+.nav-links a { color:#000; font-weight:600; font-size:16px; padding:6px 8px; display:inline-block; }
+.nav-links a:hover { color:#4CAF50; }
+
+/* Dropdown */
+.dropbtn .arrow { font-size:12px; margin-left:5px; transition:0.3s; }
+.dropdown.active .arrow { transform:rotate(180deg); }
+.dropdown-content { display:none; position:absolute; top:100%; left:0; background:#fff; min-width:160px; border-radius:6px; box-shadow:0 8px 20px rgba(0,0,0,0.08); }
+.dropdown-content a { display:block; padding:10px 14px; color:#000; font-weight:500; }
+.dropdown-content a:hover { background:#f5f5f5; color:#4CAF50; }
+@media(min-width:901px){ .dropdown:hover .dropdown-content{ display:block; } }
+
+/* Hamburger */
+.menu-toggle { display:none; background:transparent; border:none; cursor:pointer; }
+.menu-toggle-inner { font-size:28px; }
+
+/* HERO */
+.hero {
+  padding:80px 5%;
+  text-align:center;
+  background:#e0f7fa;
+  border-radius:15px;
+  margin:20px auto;
+  max-width:1100px;
+  /* background-image:url('internetsitehero.webp'); */
+  background-image: url('homeimage (1).webp');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  /* color:#871919; */
+  /* color: #000; */
+  color: hwb(24 9% 6%);
+}
+.subtitle { 
+  color:#4CAF50; 
+  /* color: #d3d3d3; */
+  font-size:1.2em; margin-bottom:15px; text-transform:uppercase; }
+.main-heading { font-size:3em; font-weight:900; margin-bottom:25px; line-height:1.2; }
+.heading-glow { 
+  /* color:#4CAF50; */
+  color:#000;
+ }
+.price-display { display:inline-flex; align-items:flex-end; border:2px solid #FFC107; border-radius:15px; padding:15px 35px; background:#f3f2ef; margin:30px 0; }
+.currency { color:#d3cfc0; font-size:1.8em; font-weight:bold; margin-right:8px; }
+.price { font-size:4.5em; font-weight:900; }
+.duration { color:#FFC107; font-weight:600; margin-left:8px; font-size:1.2em; }
+.action-button { background:#4CAF50; border:none; color:#fff; padding:16px 50px; border-radius:50px; font-weight:700; font-size:1.2em; cursor:pointer; transition:0.3s; }
+.action-button:hover { background:#45a049; transform:translateY(-2px); }
+
+/* FEATURES */
+.features-section { padding:80px 5%; text-align:center; }
+.features-section h2 { font-size:2.5em; margin-bottom:50px; color:#333; }
+.features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:25px; max-width:1200px; margin:0 auto; }
+.feature-card { background:#fff; padding:25px; border-radius:15px; border:2px solid #ddd; transition:0.3s; }
+.feature-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.1); }
+.icon { font-size:2.5em; color:#4CAF50; margin-bottom:15px; }
+.feature-card h3 { color:#FFC107; font-size:1.3em; margin-bottom:12px; }
+.feature-card p { color:#666; font-size:1em; line-height:1.5; }
+
+/* TESTIMONIAL */
+.testimonial-section { padding:80px 5%; text-align:center; background:#fff3e0; border-radius:15px; margin:20px auto; max-width:1100px; }
+.testimonial-quote { max-width:800px; margin:0 auto; }
+.testimonial-quote p { font-size:1.4em; font-style:italic; margin-bottom:20px; }
+.testimonial-author { font-size:1em; }
+.testimonial-author span { color:#FFC107; }
+
+/* FOOTER */
+.footer { background:linear-gradient(135deg,#0a3d91,#1e90ff); color:#fff; padding:50px 20px; }
+.footer-container { max-width:1200px; margin:auto; display:flex;
+   justify-content:space-between;
+    flex-wrap:wrap; }
+.footer-section { flex:1; min-width:260px; margin:15px 20px; }
+.footer-section h3 { color:#ffcc00; margin-bottom:15px; font-size:18px; font-weight:600; }
+.footer-section p, .footer-section ul li a { color:#d3d3d3; font-size:15px; }
+.footer-section ul { list-style:none; padding:0; }
+.footer-section ul li { margin-bottom:10px; }
+.footer-section ul li a:hover { color:#00ffae; }
+.social-icons a { color:#b8c6ff; margin-right:12px; font-size:18px; transition:0.3s; }
+.social-icons a:hover { color:#00ffae; }
+.footer-bottom { text-align:center; padding-top:20px; border-top:1px solid rgba(255,255,255,0.15); margin-top:30px; }
+.footer-bottom p { color:#c7c7c7; font-size:14px; }
+
+/* RESPONSIVE */
+@media(max-width:1024px){ 
+  .main-heading{font-size:2.5em;} 
+  .features-grid{grid-template-columns:repeat(2,1fr);} 
+}
+@media(max-width:768px){
+  .main-heading{font-size:2em;}
+  .features-grid{grid-template-columns:1fr;}
+  .action-button{padding:12px 30px; font-size:1em;}
+  .hero,.features-section,.testimonial-section{padding:40px 5%;}
+  .footer-container{flex-direction:column; align-items:flex-start; text-align:left;}
+  .footer-section{margin:15px 0;}
+}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  .nav-links{
+    position:fixed;
+    top:0; left:-100%;
+    width:75%; height:100vh;
+    background:#fff;
+    flex-direction:column;
+    align-items:flex-start;
+    padding:80px 25px;
+    gap:15px;
+    transition:left 0.3s ease;
+    overflow-y:auto;
+    box-shadow:5px 0 20px rgba(0,0,0,0.2);
+  }
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%;}
+  .nav-links a{font-size:18px; display:block; width:100%; padding:10px 0;}
+
+  /* Dropdown styling on mobile */
+  .dropdown-content{
+  display:none;
+  width:100%;
+  background:#f9f9f9;
+  margin:8px 0 8px 15px;
+  padding:5px 0 5px 20px;
+  border-left:3px solid #4CAF50;
+  border-radius:6px;
+  position:static;
+}
+
+.dropdown.active > .dropdown-content{
+  display:block;
+  animation: slideDown 0.25s ease;
+}
+
+@keyframes slideDown{
+  from{opacity:0; transform:translateY(-5px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+  .dropdown-content a{
+    font-size:16px;
+    padding:8px 0;
+    color:#333;
+  }
+  .dropdown.active > .dropdown-content{display:block; margin-bottom:10px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo"></a></div>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="menu-toggle-inner">☰</span>
+    </button>
+    <ul id="nav-links" class="nav-links" aria-hidden="true">
+      <li class="dropdown">
+        <a href="index.html" class="dropbtn">Home <span class="arrow">▼</span></a>
+        <div class="dropdown-content">
+          <a href="Home2.html">Home 2</a>
+        </div>
+      </li>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Plans.html">Plans</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Coverage.html">Coverage</a></li>
+      <li><a href="Support.html">Support</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- <div class="subtitle">LIMITED TIME OFFER</div> --> <br><br>
+  <h1 class="main-heading">UNLOCK THE <span class="heading-glow">NEXT GENERATION</span> OF SPEED FOR YOUR HOME</h1>
+  <div class="price-display">
+    <span class="currency">₹</span><span class="price">899</span><span class="duration">/mo*</span>
+  </div>
+  <p style="margin-bottom:30px;">*Includes complimentary router and one-month free trial.</p>
+  <a href="404error.html"><button class="action-button">ACTIVATE YOUR PLAN TODAY</button></a>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <h2>Why Upgrade to Next-Gen Fiber?</h2>
+  <div class="features-grid">
+    <div class="feature-card"><span class="icon">⚡</span><h3>Blazing Fast Downloads</h3><p>Stream 4K videos, game online, and download massive files instantly without lag.</p></div>
+    <div class="feature-card"><span class="icon">📶</span><h3>Seamless Whole-Home Wi-Fi</h3><p>Fiber delivers consistent, powerful signal strength to every corner of your home.</p></div>
+    <div class="feature-card"><span class="icon">🔒</span><h3>Reliable Connection</h3><p>Experience near-zero downtime, even during peak hours, with our stable network.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-quote">
+    <p>Switching was the best decision! My whole family can stream, game, and work online smoothly — the speed is unbelievable!</p>
+    <span class="testimonial-author">Arun K. <br><span>- Happy Customer in Bangalore</span></span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo" style="width:150px;"></a></div>
+      <p>Stackly Internet Site provides high-speed, reliable, and secure internet solutions for homes and businesses across India.</p>
+      <div class="social-icons">
+        <a href="404error.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="404error.html"><i class="fab fa-linkedin-in"></i></a>
+        <a href="404error.html"><i class="fab fa-twitter"></i></a>
+        <a href="404error.html"><i class="fab fa-instagram"></i></a>
+        <a href="404error.html"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="Plans.html">Plans</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Coverage.html">Coverage</a></li>
+        <li><a href="Support.html">Support</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p><strong>Email:</strong> support@stackly.com</p>
+      <p><strong>Phone:</strong> +91 70107 92745</p>
+      <p><strong>Location:</strong> Bengaluru, Karnataka-560068</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Stackly Internet Site. All rights reserved.</p></div>
+</footer>
+
+<script>
+const toggleBtn = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+const homeDropdown = document.querySelector('.dropdown');
+const homeArrow = document.querySelector('.arrow');
+
+toggleBtn.addEventListener('click', e=>{
+  e.stopPropagation();
+  navLinks.classList.toggle('active');
+  toggleBtn.querySelector('.menu-toggle-inner').textContent =
+    navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+homeArrow.addEventListener('click', e=>{
+  if(window.innerWidth <= 900){
+    e.preventDefault();
+    e.stopPropagation();
+    homeDropdown.classList.toggle('active');
+  }
+});
+
+document.addEventListener('click', e=>{
+  if(window.innerWidth <= 900 && !navLinks.contains(e.target) && !toggleBtn.contains(e.target)){
+    navLinks.classList.remove('active');
+    toggleBtn.querySelector('.menu-toggle-inner').textContent = '☰';
+    homeDropdown.classList.remove('active');
+  }
+});
+</script>
+
+</body>
+</html>

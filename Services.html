@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet Site Services</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;overflow-x:hidden;font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;background:#f5f7fa;color:#333;}
+
+/* HEADER */
+/* header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid rgba(0,0,0,0.05);} */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+nav{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;max-width:1200px;margin:auto;}
+.logo img{width:120px;height:auto;display:block;}
+.nav-links{list-style:none;display:flex;gap:20px;align-items:center;}
+.nav-links li{position:relative;}
+.nav-links a{color:#000;font-weight:600;font-size:16px;padding:6px 8px;display:inline-block;text-decoration:none;}
+.nav-links a:hover{color:#4CAF50;text-decoration:none;}
+
+/* Dropdown */
+.dropdown-content{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    background:#fff;
+    min-width:160px;
+    border-radius:6px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    z-index:999;
+}
+.dropdown-content a{
+    display:block;
+    padding:10px 14px;
+    color:#000;
+    font-weight:500;
+    text-decoration:none;
+}
+.dropdown-content a:hover{
+    background:#f5f5f5;
+    color:#4CAF50;
+}
+
+/* Desktop hover */
+@media(min-width:901px){
+    .dropdown:hover .dropdown-content{display:block;}
+    .dropdown .arrow{display:inline-block;}
+}
+
+/* Mobile dropdown */
+.dropdown.active>.dropdown-content{display:block;}
+.dropdown .arrow{font-size:12px;margin-left:5px;transition:0.3s;}
+.dropdown.active .arrow{transform:rotate(180deg);}
+
+/* Hamburger */
+.menu-toggle{display:none;background:transparent;border:none;cursor:pointer;}
+.menu-toggle-inner{font-size:28px;}
+
+/* MAIN CONTENT */
+.main-content{flex:1;padding:100px 20px;}
+h1{text-align:center;color:#0a1f44;margin-bottom:50px;font-size:36px;}
+
+/* Services Section */
+.service-section{padding:50px 30px;border-radius:25px;background:linear-gradient(135deg,#a0eafc,#fdd3b0,#e4c1f9);box-shadow:0 12px 30px rgba(0,0,0,0.08);}
+.service-section h2{font-size:28px;margin-bottom:40px;color:#0a1f44;text-decoration:none;}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+.card{background:#fff;border-radius:20px;padding:30px 20px;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,0.08);transition: transform 0.4s, box-shadow 0.4s;cursor:pointer;}
+.card:hover{transform:translateY(-10px);box-shadow:0 15px 35px rgba(0,0,0,0.15);}
+.card h3{margin:15px 0 12px;color:#0a1f44;}
+.card p{color:#4b4b4b;margin:10px 0;font-size:15px;}
+.card a{text-decoration:none;color:#fff;background:#007bff;padding:10px 18px;border-radius:10px;display:inline-block;margin-top:15px;font-weight:600;transition:0.3s;}
+.card a:hover{background:#00c2ff;}
+.card i{font-size:45px;color:#007bff;margin-bottom:12px;}
+
+/* FOOTER */
+.footer{background:linear-gradient(135deg,#0a1f44,#1e90ff);color:#fff;padding:50px 20px;}
+.footer-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap;text-align:left;}
+.footer-section{flex:1;min-width:260px;margin:15px 20px;}
+.footer-section h3{color:#ffcc00;margin-bottom:15px;font-size:18px;font-weight:600;}
+.footer-section p,.footer-section ul li a{color:#d3d3d3;font-size:15px;text-decoration:none;}
+.footer-section ul{list-style:none;padding:0;}
+.footer-section ul li{margin-bottom:10px;}
+.footer-section ul li a:hover{color:#00ffae;}
+.social-icons a{color:#b8c6ff;margin-right:12px;font-size:18px;transition:0.3s;text-decoration:none;}
+.social-icons a:hover{color:#00ffae;}
+.footer-bottom{text-align:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15);margin-top:30px;}
+.footer-bottom p{color:#c7c7c7;font-size:14px;}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  .nav-links{
+    position:fixed;top:0;left:-100%;width:75%;height:100vh;background:#fff;flex-direction:column;align-items:flex-start;padding:80px 25px;gap:15px;transition:left 0.3s ease;overflow-y:auto;box-shadow:5px 0 20px rgba(0,0,0,0.2);
+  }
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%;}
+  .nav-links a{font-size:18px;display:block;width:100%;padding:10px 0;}
+  .dropdown-content{position:static;width:100%;background:#f9f9f9;margin:8px 0 8px 15px;padding:5px 0 5px 20px;border-left:3px solid #4CAF50;border-radius:6px;display:none;}
+  .dropdown.active>.dropdown-content{display:block;}
+  
+  /* .footer-container{flex-direction:column;align-items:flex-start;
+    text-align: center;
+  } */
+   .footer-container{flex-direction:column; align-items:flex-start; text-align:left;}
+
+  .footer-section{margin:15px 0;width:100%;}
+  .footer-section ul{display:block !important;}
+  .social-icons{justify-content:flex-start;margin-top:10px;}
+}
+
+/* Responsive Cards */
+@media(max-width:1200px){.cards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:800px){.cards{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo"></a></div>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="menu-toggle-inner">☰</span>
+    </button>
+    <ul id="nav-links" class="nav-links" aria-hidden="true">
+      <li class="dropdown">
+        <a href="index.html" class="dropbtn">Home <span class="arrow">▼</span></a>
+        <div class="dropdown-content">
+          <!-- <a href="index.html">Home 1</a> -->
+          <a href="Home2.html">Home 2</a>
+        </div>
+      </li>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Plans.html">Plans</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Coverage.html">Coverage</a></li>
+      <li><a href="Support.html">Support</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+  <h1>Our Internet Services</h1>
+  <div class="service-section">
+    <h2>Explore Our Services</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-wifi"></i><h3>Fiber Broadband</h3><p>Ultra-fast internet for streaming & gaming.</p><a href="404error.html">See Plans</a></div>
+      <div class="card"><i class="fas fa-house"></i><h3>Home WiFi Setup</h3><p>Professional installation for seamless connectivity.</p><a href="404error.html">Learn More</a></div>
+      <div class="card"><i class="fas fa-building"></i><h3>Dedicated Business Line</h3><p>Guaranteed uptime for offices & co-working spaces.</p><a href="404error.html">Business Plans</a></div>
+      <div class="card"><i class="fas fa-server"></i><h3>Static IP & Hosting</h3><p>Secure servers and static IP options for business.</p><a href="404error.html">More Info</a></div>
+      <div class="card"><i class="fas fa-plug"></i><h3>Router Upgrade</h3><p>High-speed WiFi 6 router for better coverage.</p><a href="404error.html">Upgrade Now</a></div>
+      <div class="card"><i class="fas fa-database"></i><h3>Extra Data Pack</h3><p>Add more data for heavy usage months.</p><a href="404error.html">Add Data</a></div>
+      <div class="card"><i class="fas fa-headset"></i><h3>24/7 Support</h3><p>Call, chat, or email support anytime you need it.</p><a href="404error.html">Contact Support</a></div>
+      <div class="card"><i class="fas fa-network-wired"></i><h3>Network Monitoring</h3><p>Real-time monitoring ensures uninterrupted service.</p><a href="404error.html">Learn More</a></div>
+      <div class="card"><i class="fas fa-shield-alt"></i><h3>Security & Firewall</h3><p>Protect your internet network from threats.</p><a href="404error.html">More Info</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo" style="width:150px;"></a></div>
+      <p>Stackly Internet Site provides high-speed, reliable, and secure internet solutions for homes and businesses across India.</p>
+      <div class="social-icons">
+        <a href="404error.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="404error.html"><i class="fab fa-linkedin-in"></i></a>
+        <a href="404error.html"><i class="fab fa-twitter"></i></a>
+        <a href="404error.html"><i class="fab fa-instagram"></i></a>
+        <a href="404error.html"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="Plans.html">Plans</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Coverage.html">Coverage</a></li>
+        <li><a href="Support.html">Support</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p><strong>Email:</strong> support@stackly.com</p>
+      <p><strong>Phone:</strong> +91 70107 92745</p>
+      <p><strong>Location:</strong> Bengaluru, Karnataka - 560068</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Stackly Internet Site. All rights reserved.</p></div>
+</footer>
+
+<script>
+const toggleBtn=document.getElementById('menu-toggle');
+const navLinks=document.getElementById('nav-links');
+const homeDropdown=document.querySelector('.dropdown');
+const homeArrow=document.querySelector('.arrow');
+
+// Hamburger toggle
+toggleBtn.addEventListener('click',e=>{
+  e.stopPropagation();
+  navLinks.classList.toggle('active');
+  toggleBtn.querySelector('.menu-toggle-inner').textContent=navLinks.classList.contains('active')?'✕':'☰';
+});
+
+// Home dropdown toggle on mobile
+homeArrow.addEventListener('click',e=>{
+  if(window.innerWidth<=900){e.preventDefault();e.stopPropagation();homeDropdown.classList.toggle('active');}
+});
+
+// Close menu when clicking outside
+document.addEventListener('click',e=>{
+  if(window.innerWidth<=900 && !navLinks.contains(e.target) && !toggleBtn.contains(e.target)){
+    navLinks.classList.remove('active');
+    toggleBtn.querySelector('.menu-toggle-inner').textContent='☰';
+    homeDropdown.classList.remove('active');
+  }
+});
+</script>
+
+</body>
+</html>

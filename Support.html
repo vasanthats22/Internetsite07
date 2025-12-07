@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet Site Support</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+/* RESET */
+* {margin:0; padding:0; box-sizing:border-box;}
+html,body{width:100%; overflow-x:hidden;}
+body{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f0f4f8; color:#121212;}
+
+/* HEADER */
+/* header{position:sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid rgba(0,0,0,0.05);} */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+nav{display:flex; justify-content:space-between; align-items:center; padding:12px 20px; max-width:1200px; margin:auto;}
+.logo img{width:120px; display:block;}
+.nav-links{list-style:none; display:flex; gap:20px; align-items:center;}
+.nav-links li{position:relative;}
+.nav-links a{color:#000; font-weight:600; font-size:16px; padding:6px 8px; display:inline-block; text-decoration:none;}
+.nav-links a:hover{color:#4CAF50;}
+
+/* Dropdown */
+.dropbtn .arrow{font-size:12px;margin-left:5px;transition:0.3s;}
+.dropdown.active .arrow{transform:rotate(180deg);}
+.dropdown-content{display:none; position:absolute; top:100%; left:0; background:#fff; min-width:160px; border-radius:6px; box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.dropdown-content a{display:block; padding:10px 14px; color:#000; font-weight:500; text-decoration:none;}
+.dropdown-content a:hover{background:#f5f5f5;color:#4CAF50;}
+@media(min-width:901px){.dropdown:hover .dropdown-content{display:block;}}
+
+/* Hamburger */
+.menu-toggle{display:none;background:transparent;border:none;cursor:pointer;}
+.menu-toggle-inner{font-size:28px;}
+
+/* HERO SECTION */
+.support-hero {
+  background: linear-gradient(135deg,#a0eafc,#fdd3b0,#e4c1f9);
+  padding:80px 5%;
+  text-align:center;
+  position:relative;
+  border-radius:20px;
+  margin:20px auto;
+  max-width:1200px;
+  color:#0a1f44;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  overflow:hidden;
+  background-image: url('Speedtest2.webp');
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.support-hero::before {
+  content:'';
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(270deg, #a0eafc, #fdd3b0, #e4c1f9);
+  background-size: 600% 600%;
+  animation: gradientMove 12s ease infinite;
+  opacity:0.5;
+  border-radius:20px;
+  z-index:0;
+}
+@keyframes gradientMove {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.support-hero h1 {font-size:2.8em; margin-bottom:20px; position:relative; z-index:1;}
+.support-hero p {font-size:1.3em; max-width:800px; margin:0 auto 30px; color:#0a1f44; position:relative; z-index:1;}
+
+/* SUPPORT GRID */
+.support-section{padding:60px 5%; max-width:1200px; margin:40px auto; text-align:center;}
+.support-section h2{font-size:2.5em; margin-bottom:40px; color:#0a1f44;}
+.support-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:30px;}
+.support-card{
+  color:#121212;
+  border-radius:15px;
+  padding:30px 25px;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; cursor:pointer;
+  background:#d0f0fd; /* light pastel background */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height:200px;
+}
+.support-card:nth-child(2){background:#fdd3b0;}
+.support-card:nth-child(3){background:#e4c1f9;}
+.support-card:nth-child(4){background:#c8f7c5;}
+.support-card:nth-child(5){background:#ffe0b3;}
+.support-card:nth-child(6){background:#ffd6e0;}
+.support-card:hover{transform:translateY(-7px); box-shadow:0 12px 25px rgba(0,0,0,0.25);}
+.support-card h3{font-size:1.5em; margin-bottom:10px;}
+.support-card p{font-size:1em; line-height:1.5em;}
+
+/* CTA SECTION */
+.cta-section{background: linear-gradient(135deg,#a0eafc,#e4c1f9); padding:60px 5%; text-align:center; position:relative; margin-top:40px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.15);}
+.cta-section h2, .cta-section button{position:relative; z-index:1;}
+.cta-section h2{font-size:2.5em; margin-bottom:20px; color:#0a1f44;}
+.cta-section button{background-color:#4CAF50;color:#fff;border:none;padding:18px 50px;font-size:1.2em;font-weight:800;border-radius:50px;cursor:pointer;transition:0.3s;}
+.cta-section button:hover{background-color:#45a049; transform:translateY(-2px);}
+
+/* FOOTER */
+.footer{background:linear-gradient(135deg,#0a3d91,#1e90ff);color:#fff;padding:50px 20px;}
+.footer-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap;text-align:left;}
+.footer-section{flex:1;min-width:260px;margin:15px 20px;}
+.footer-section h3{color:#ffcc00;margin-bottom:15px;font-size:18px;font-weight:600;}
+.footer-section p,.footer-section ul li a{color:#d3d3d3;font-size:15px;text-decoration:none;}
+.footer-section ul{list-style:none;padding:0;}
+.footer-section ul li{margin-bottom:10px;}
+.footer-section ul li a:hover{color:#00ffae;}
+.social-icons a{color:#b8c6ff;margin-right:12px;font-size:18px;transition:0.3s;text-decoration:none;}
+.social-icons a:hover{color:#00ffae;}
+.footer-bottom{text-align:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15);margin-top:30px;}
+.footer-bottom p{color:#c7c7c7;font-size:14px;}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  .nav-links{position:fixed; top:0; left:-100%; width:75%; height:100vh; background:#fff; flex-direction:column; align-items:flex-start; padding:80px 25px; gap:15px; transition:left 0.3s ease; overflow-y:auto; box-shadow:5px 0 20px rgba(0,0,0,0.2);}
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%;}
+  .nav-links a{font-size:18px; display:block; width:100%; padding:10px 0;}
+  .dropdown-content{display:none; width:100%; background:#f9f9f9; margin:8px 0 8px 15px; padding:5px 0 5px 20px; border-left:3px solid #4CAF50; border-radius:6px; position:static;}
+  .dropdown.active>.dropdown-content{display:block; animation:slideDown 0.25s ease;}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:translateY(0);}}
+}
+@media(max-width:992px){.support-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.support-grid{grid-template-columns:1fr;}.support-hero h1{font-size:2.2em;}.support-section h2,.cta-section h2{font-size:2em;}}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  .nav-links{
+    position:fixed;top:0;left:-100%;width:75%;height:100vh;background:#fff;flex-direction:column;align-items:flex-start;padding:80px 25px;gap:15px;transition:left 0.3s ease;overflow-y:auto;box-shadow:5px 0 20px rgba(0,0,0,0.2);
+  }
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%;}
+  .nav-links a{font-size:18px;display:block;width:100%;padding:10px 0;}
+  .dropdown-content{position:static;width:100%;background:#f9f9f9;margin:8px 0 8px 15px;padding:5px 0 5px 20px;border-left:3px solid #4CAF50;border-radius:6px;display:none;}
+  .dropdown.active>.dropdown-content{display:block;}
+  
+  /* .footer-container{flex-direction:column;align-items:flex-start;
+    text-align: center;
+  } */
+   .footer-container{flex-direction:column; align-items:flex-start; text-align:left;}
+
+  .footer-section{margin:15px 0;width:100%;}
+  .footer-section ul{display:block !important;}
+  .social-icons{justify-content:flex-start;margin-top:10px;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo"></a></div>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="menu-toggle-inner">☰</span></button>
+    <ul id="nav-links" class="nav-links" aria-hidden="true">
+      <li class="dropdown">
+        <a href="index.html" class="dropbtn">Home <span class="arrow">▼</span></a>
+        <div class="dropdown-content">
+          <a href="Home2.html">Home 2</a>
+        </div>
+      </li>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Plans.html">Plans</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Coverage.html">Coverage</a></li>
+      <li><a href="Support.html">Support</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="support-hero">
+  <h1>Need Assistance?</h1>
+  <p>Our support team is ready 24/7 to help you. Browse the options below or contact us directly for immediate assistance.</p>
+</section>
+
+<!-- Support Grid -->
+<section class="support-section">
+  <h2>Support Options</h2>
+  <div class="support-grid">
+    <div class="support-card"><h3>Billing & Payments</h3><p>Check bills, manage payments, and view your payment history quickly and securely.</p></div>
+    <div class="support-card"><h3>Technical Support</h3><p>Assistance with connectivity issues, network troubleshooting, and device setup.</p></div>
+    <div class="support-card"><h3>General Queries</h3><p>Any other questions about our services? Our support team will assist you.</p></div>
+    <div class="support-card"><h3>Feedback</h3><p>Share feedback to help us improve and provide a better experience.</p></div>
+    <div class="support-card"><h3>Emergency Support</h3><p>Immediate assistance for network outages or critical connectivity problems.</p></div>
+    <div class="support-card"><h3>Live Chat</h3><p>Connect instantly with support agents via live chat for real-time assistance.</p></div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <h2>Contact Support Now</h2>
+  <a href="404error.html"><button>Reach Out</button></a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo" style="width:150px;"></a></div>
+      <p>Stackly Internet Site provides high-speed, reliable, and secure internet solutions for homes and businesses across India.</p>
+      <div class="social-icons">
+        <a href="404error.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="404error.html"><i class="fab fa-linkedin-in"></i></a>
+        <a href="404error.html"><i class="fab fa-twitter"></i></a>
+        <a href="404error.html"><i class="fab fa-instagram"></i></a>
+        <a href="404error.html"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="Plans.html">Plans</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Coverage.html">Coverage</a></li>
+        <li><a href="Support.html">Support</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p><strong>Email:</strong> support@stackly.com</p>
+      <p><strong>Phone:</strong> +91 70107 92745</p>
+      <p><strong>Location:</strong> Bengaluru, Karnataka - 560068</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Stackly Internet Site. All rights reserved.</p></div>
+</footer>
+
+<script>
+const toggleBtn=document.getElementById('menu-toggle');
+const navLinks=document.getElementById('nav-links');
+const homeDropdown=document.querySelector('.dropdown');
+const homeArrow=document.querySelector('.arrow');
+
+toggleBtn.addEventListener('click',e=>{
+  e.stopPropagation();
+  navLinks.classList.toggle('active');
+  toggleBtn.querySelector('.menu-toggle-inner').textContent=navLinks.classList.contains('active')?'✕':'☰';
+});
+homeArrow.addEventListener('click',e=>{
+  if(window.innerWidth<=900){e.preventDefault(); e.stopPropagation(); homeDropdown.classList.toggle('active');}
+});
+document.addEventListener('click',e=>{
+  if(window.innerWidth<=900 && !navLinks.contains(e.target) && !toggleBtn.contains(e.target)){
+    navLinks.classList.remove('active');
+    toggleBtn.querySelector('.menu-toggle-inner').textContent='☰';
+    homeDropdown.classList.remove('active');
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Internet Site Plans</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;overflow-x:hidden;}
+body{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;background:#f5f7fa;color:#333;}
+
+/* HEADER */
+/* header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid rgba(0,0,0,0.05);} */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;max-width:1200px;margin:auto;}
+.logo img{width:120px;height:auto;display:block;}
+.nav-links{list-style:none;display:flex;gap:20px;align-items:center;}
+.nav-links li{position:relative;}
+.nav-links a{color:#000;font-weight:600;font-size:16px;padding:6px 8px;display:inline-block;text-decoration:none;}
+.nav-links a:hover{color:#4CAF50;text-decoration:none;}
+
+/* Dropdown */
+.dropbtn .arrow{font-size:12px;margin-left:5px;transition:0.3s;}
+.dropdown.active .arrow{transform:rotate(180deg);}
+.dropdown-content{display:none;position:absolute;top:100%;left:0;background:#fff;min-width:160px;border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.dropdown-content a{display:block;padding:10px 14px;color:#000;font-weight:500;text-decoration:none;}
+.dropdown-content a:hover{background:#f5f5f5;color:#4CAF50;text-decoration:none;}
+@media(min-width:901px){.dropdown:hover .dropdown-content{display:block;}}
+
+/* Hamburger */
+.menu-toggle{display:none;background:transparent;border:none;cursor:pointer;}
+.menu-toggle-inner{font-size:28px;}
+
+/* PLANS PAGE STYLES */
+.main-content{max-width:1200px;margin:100px auto 40px;padding:0 20px;}
+h1{font-size:28px;margin-bottom:30px;color:#0a1f44;}
+.plan-section{margin-bottom:50px;}
+.plan-section h2{color:#007bff;font-size:1.6rem;margin-bottom:14px;font-weight:700;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.card{border-radius:10px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);transition:transform .2s;background:#fff;color:#0a1f44;text-align:center;}
+.card:hover{transform:translateY(-5px);}
+.card h3{margin-bottom:10px;}
+.card p{margin:6px 0;}
+.price{font-size:18px;font-weight:700;margin-top:12px;display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,0.7);text-decoration:none;color:#0a1f44;}
+
+/* Pastel backgrounds */
+.home-basic{background:linear-gradient(135deg,#cfeeff,#dff7e3);}
+.home-pro{background:linear-gradient(135deg,#fff3d9,#ffdfdf);}
+.home-elite{background:linear-gradient(135deg,#eaffef,#e6f7ff);}
+.business-startup{background:linear-gradient(135deg,#fff0d6,#fff8e6);}
+.business-pro{background:linear-gradient(135deg,#e6f8ff,#dff0ff);}
+.business-enterprise{background:linear-gradient(135deg,#f6e7ff,#f0dfff);}
+.addon-ip{background:linear-gradient(135deg,#fff9d6,#ffecec);}
+.addon-data{background:linear-gradient(135deg,#eafff3,#dffef0);}
+.addon-router{background:linear-gradient(135deg,#fff0f7,#ffe6f0);}
+
+/* FOOTER */
+.footer{background:linear-gradient(135deg,#0a3d91,#1e90ff);color:#fff;padding:50px 20px;margin-top:40px;}
+.footer-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap;text-align:left;}
+.footer-section{flex:1;min-width:220px;margin:15px 20px;}
+.footer-section h3{color:#ffcc00;margin-bottom:15px;font-size:18px;font-weight:600;}
+.footer-section p,.footer-section ul li a{color:#d3d3d3;font-size:15px;text-decoration:none;}
+.footer-section ul{list-style:none;padding:0;}
+.footer-section ul li{margin-bottom:10px;}
+.footer-section ul li a:hover{color:#00ffae;text-decoration:none;}
+.social-icons a{color:#b8c6ff;margin-right:12px;font-size:18px;transition:0.3s;text-decoration:none;}
+.social-icons a:hover{color:#00ffae;}
+.footer-bottom{text-align:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15);margin-top:30px;}
+.footer-bottom p{color:#c7c7c7;font-size:14px;}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  .nav-links{
+    position:fixed;top:0;left:-100%;width:75%;height:100vh;background:#fff;flex-direction:column;padding:90px 25px;gap:15px;overflow-y:auto;transition:left 0.3s ease;box-shadow:5px 0 20px rgba(0,0,0,0.2);
+  }
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%;}
+  .nav-links a{font-size:18px;display:block;width:100%;padding:10px 0;text-decoration:none;}
+  .dropdown-content{display:none;width:100%;background:#f9f9f9;margin:8px 0 8px 15px;padding:5px 0 5px 20px;border-left:3px solid #4CAF50;border-radius:6px;position:static;}
+  .dropdown.active>.dropdown-content{display:block;animation:slideDown 0.25s ease;}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:translateY(0);}}
+  .cards{grid-template-columns:1fr;}
+  /* .footer-container{flex-direction:column;align-items:center;text-align:center;} */
+/* } */
+.footer-container{flex-direction:column; align-items:flex-start; text-align:left;}
+
+a{text-decoration:none;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo"></a></div>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="menu-toggle-inner">☰</span>
+    </button>
+    <ul id="nav-links" class="nav-links" aria-hidden="true">
+      <li class="dropdown" id="home-dropdown">
+        <a href="index.html" class="dropbtn">Home <span class="arrow">▼</span></a>
+        <div class="dropdown-content">
+          <a href="Home2.html">Home 2</a>
+        </div>
+      </li>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Plans.html">Plans</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Coverage.html">Coverage</a></li>
+      <li><a href="Support.html">Support</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- PLANS CONTENT -->
+<main class="main-content">
+  <h1>Our Internet Plans</h1>
+  <!-- Home Plans -->
+  <section class="plan-section">
+    <h2>Home Plans</h2>
+    <div class="cards">
+      <div class="card home-basic"><h3>Basic Fiber</h3><p>Speed: 100 Mbps</p><p>Data: 200 GB</p><a class="price" href="404error.html">₹599 / month</a></div>
+      <div class="card home-pro"><h3>Pro Fiber</h3><p>Speed: 300 Mbps</p><p>Data: 500 GB</p><a class="price" href="404error.html">₹999 / month</a></div>
+      <div class="card home-elite"><h3>Elite Fiber</h3><p>Speed: 500 Mbps</p><p>Data: Unlimited</p><a class="price" href="404error.html">₹1499 / month</a></div>
+    </div>
+  </section>
+  <!-- Business Plans -->
+  <section class="plan-section">
+    <h2>Business Plans</h2>
+    <div class="cards">
+      <div class="card business-startup"><h3>Startup Plan</h3><p>Speed: 200 Mbps</p><p>Data: 1 TB</p><a class="price" href="404error.html">₹1999 / month</a></div>
+      <div class="card business-pro"><h3>Professional Plan</h3><p>Speed: 500 Mbps</p><p>Data: 3 TB</p><a class="price" href="404error.html">₹3499 / month</a></div>
+      <div class="card business-enterprise"><h3>Enterprise Plan</h3><p>Speed: 1 Gbps</p><p>Data: Unlimited</p><a class="price" href="404error.html">₹5999 / month</a></div>
+    </div>
+  </section>
+  <!-- Add-ons -->
+  <section class="plan-section">
+    <h2>Add-ons & Features</h2>
+    <div class="cards">
+      <div class="card addon-ip"><h3>Static IP</h3><p>Required for servers and remote access</p><a class="price" href="404error.html">₹199 / month</a></div>
+      <div class="card addon-data"><h3>Extra Data</h3><p>Add 500 GB to your existing plan</p><a class="price" href="404error.html">₹299 / month</a></div>
+      <div class="card addon-router"><h3>Router Upgrade</h3><p>High-speed WiFi 6 router</p><a class="price" href="404error.html">₹499 / one-time</a></div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo" style="width:150px"></a></div>
+      <p>Stackly Internet Site provides high-speed, reliable, and secure internet solutions for homes and businesses across India.</p>
+      <div class="social-icons">
+        <a href="404error.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="404error.html"><i class="fab fa-linkedin-in"></i></a>
+        <a href="404error.html"><i class="fab fa-twitter"></i></a>
+        <a href="404error.html"><i class="fab fa-instagram"></i></a>
+        <a href="404error.html"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="Plans.html">Plans</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Coverage.html">Coverage</a></li>
+        <li><a href="Support.html">Support</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p>Email: support@stackly.com<br>Phone: +91 70107 92745<br>Location: Bengaluru, Karnataka - 560068</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Stackly Internet Site. All rights reserved.</p></div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+const homeDropdown = document.getElementById('home-dropdown');
+const homeArrow = homeDropdown.querySelector('.arrow');
+
+function isMobile(){ return window.innerWidth <= 900; }
+
+/* Toggle hamburger menu */
+menuToggle.addEventListener('click', e=>{
+  e.stopPropagation();
+  navLinks.classList.toggle('active');
+  menuToggle.querySelector('.menu-toggle-inner').textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+  homeDropdown.classList.remove('active');
+});
+
+/* Toggle dropdown only when arrow is clicked on mobile */
+homeArrow.addEventListener('click', e=>{
+  if(isMobile()){
+    e.preventDefault();
+    e.stopPropagation();
+    homeDropdown.classList.toggle('active');
+  }
+});
+
+/* Close menus when clicking outside */
+document.addEventListener('click', e=>{
+  if(isMobile() && !navLinks.contains(e.target) && !menuToggle.contains(e.target)){
+    navLinks.classList.remove('active');
+    menuToggle.querySelector('.menu-toggle-inner').textContent='☰';
+    homeDropdown.classList.remove('active');
+  }
+});
+
+/* Reset on resize */
+window.addEventListener('resize', ()=>{
+  if(!isMobile()){
+    navLinks.classList.remove('active');
+    homeDropdown.classList.remove('active');
+    menuToggle.querySelector('.menu-toggle-inner').textContent='☰';
+  }
+});
+</script>
+
+</body>
+</html>

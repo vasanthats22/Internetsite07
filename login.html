@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login | Internet Site</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+/* RESET */
+* {margin:0; padding:0; box-sizing:border-box;}
+html,body{width:100%; overflow-x:hidden;}
+body{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:linear-gradient(120deg,#2980b9,#6dd5fa,#ffffff); color:#121212; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-start;}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+nav{display:flex; justify-content:space-between; align-items:center; padding:12px 20px; max-width:1200px; margin:auto;}
+.logo img{width:120px; display:block;}
+.nav-links{list-style:none; display:flex; gap:20px; align-items:center;}
+.nav-links li{position:relative;}
+.nav-links a{color:#000; font-weight:600; font-size:16px; padding:6px 8px; display:inline-block; text-decoration:none;}
+.nav-links a:hover{color:#4CAF50;}
+
+/* Dropdown */
+.dropbtn .arrow{font-size:12px;margin-left:5px;transition:0.3s;}
+.dropdown.active .arrow{transform:rotate(180deg);}
+.dropdown-content{display:none; position:absolute; top:100%; left:0; background:#fff; min-width:160px; border-radius:6px; box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.dropdown-content a{display:block; padding:10px 14px; color:#000; font-weight:500; text-decoration:none;}
+.dropdown-content a:hover{background:#f5f5f5;color:#4CAF50;}
+@media(min-width:901px){.dropdown:hover .dropdown-content{display:block;}}
+
+/* Hamburger */
+.menu-toggle{display:none;background:transparent;border:none;cursor:pointer;}
+.menu-toggle-inner{font-size:28px;}
+
+/* Login Hero Section */
+.login-hero {
+  text-align: center;
+  padding: 70px 5% 20px;
+  color: #121212;
+}
+.login-hero h1 { font-size:2.8em; font-weight:700; margin-bottom:10px; }
+.login-hero p { font-size:1.1em; color:#121212; opacity:0.95; }
+
+/* Login Section */
+.login-section {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px 5%;
+}
+.login-box {
+  background:#fff;
+  border-radius:15px;
+  padding:40px 35px;
+  width:100%;
+  max-width:400px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+.login-box:hover { transform:translateY(-5px); }
+.login-box h2 { color:#2980b9; text-align:center; margin-bottom:25px; }
+
+.input-field { position: relative; margin-bottom:20px; }
+.input-field input {
+  width:100%; padding:12px 15px; border-radius:8px; border:1px solid #ccc; font-size:1em; transition:border 0.3s;
+}
+.input-field input:focus { border-color:#2980b9; outline:none; }
+
+.login-box button {
+  width:100%; padding:12px; border:none; background-color:#2980b9; color:white; font-size:1.1em; font-weight:600; border-radius:8px; cursor:pointer; transition:background 0.3s ease;
+}
+.login-box button:hover { background-color:#2573a6; }
+
+.login-box .links { text-align:center; margin-top:15px; }
+.login-box .links a { color:#2980b9; text-decoration:none; font-weight:500; margin:0 5px; }
+.login-box .links a:hover { text-decoration:underline; }
+
+.forgot-password {
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+.forgot-password a {
+  color: #2980b9;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+.footer{background:linear-gradient(135deg,#0a3d91,#1e90ff);
+  color:#fff;
+  padding:50px 20px;}
+.footer-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap;text-align:left;}
+.footer-section{flex:1;min-width:260px;margin:15px 20px;}
+.footer-section h3{color:#ffcc00;margin-bottom:15px;font-size:18px;font-weight:600;}
+.footer-section p,.footer-section ul li a{color:#d3d3d3;font-size:15px;text-decoration:none;}
+.footer-section ul{list-style:none;padding:0;}
+.footer-section ul li{margin-bottom:10px;}
+.footer-section ul li a:hover{color:#00ffae;}
+.social-icons a{color:#b8c6ff;margin-right:12px;font-size:18px;transition:0.3s;text-decoration:none;}
+.social-icons a:hover{color:#00ffae;}
+.footer-bottom{text-align:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15);margin-top:30px;}
+.footer-bottom p{color:#c7c7c7;font-size:14px;}
+
+
+
+
+/* MEDIA QUERIES */
+@media(max-width:992px){.login-section{flex-direction:column;}}
+
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  .nav-links{position:fixed; top:0; left:-100%; width:75%; height:100vh; background:#fff; flex-direction:column; align-items:flex-start; padding:80px 25px; gap:15px; transition:left 0.3s ease; overflow-y:auto; box-shadow:5px 0 20px rgba(0,0,0,0.2);}
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%;}
+  .nav-links a{font-size:18px; display:block; width:100%; padding:10px 0;}
+  .dropdown-content{position:static;width:100%;background:#f9f9f9;margin:8px 0 8px 15px;padding:5px 0 5px 20px;border-left:3px solid #4CAF50;border-radius:6px;display:none;}
+  .dropdown.active>.dropdown-content{display:block;}
+  .footer-container{flex-direction:column; align-items:flex-start; text-align:left;}
+  .footer-section{margin:15px 0;width:100%; text-align:left;}
+  .social-icons{justify-content:center;margin-top:10px;}
+}
+@media(max-width:600px){
+  .login-hero h1{ font-size:2.2em; }
+  .login-box { padding:30px 20px; }
+}
+
+/* Dropdown arrow animation */
+.dropdown.active .arrow{transform:rotate(180deg);}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo"></a></div>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span class="menu-toggle-inner">☰</span></button>
+    <ul id="nav-links" class="nav-links" aria-hidden="true">
+      <li class="dropdown">
+        <a href="index.html" class="dropbtn" id="home-button">Home <span class="arrow">▼</span></a>
+        <div class="dropdown-content">
+          <a href="Home2.html">Home 2</a>
+        </div>
+      </li>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Plans.html">Plans</a></li>
+      <li><a href="Services.html">Services</a></li>
+      <li><a href="Coverage.html">Coverage</a></li>
+      <li><a href="Support.html">Support</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="login-hero">
+  <h1>Sign In to Internet Site</h1>
+  <p>Access your account and stay connected anytime, anywhere.</p>
+</section>
+
+<!-- Login Section -->
+<section class="login-section">
+  <div class="login-box">
+    <h2>Login</h2>
+      <form id="loginForm" action="404error.html" method="GET">
+      <div class="input-field">
+        <input type="email" placeholder="Email" maxlength="50" required
+               title="Enter a valid email address" />
+      </div>
+      <div class="input-field">
+        <input type="password" id="password" placeholder="Password" maxlength="30" required />
+        <small id="password-msg" style="color:red; display:block; margin-top:5px;"></small>
+      </div>
+
+      <!-- Added Forgot Password link -->
+      <div class="forgot-password">
+        <a href="forgot.html">Forgot Password?</a>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <div class="links">
+        <a href="logout.html">Log Out</a> | <a href="signpu.html">Sign Up</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+const toggleBtn=document.getElementById('menu-toggle');
+const navLinks=document.getElementById('nav-links');
+const homeDropdown=document.querySelector('.dropdown');
+const homeArrow=document.querySelector('.arrow');
+
+toggleBtn.addEventListener('click',e=>{
+  e.stopPropagation();
+  navLinks.classList.toggle('active');
+  toggleBtn.querySelector('.menu-toggle-inner').textContent=navLinks.classList.contains('active')?'✕':'☰';
+});
+
+homeArrow.addEventListener('click',e=>{
+  if(window.innerWidth<=900){e.preventDefault(); e.stopPropagation(); homeDropdown.classList.toggle('active');}
+});
+
+document.addEventListener('click',e=>{
+  if(window.innerWidth<=900 && !navLinks.contains(e.target) && !toggleBtn.contains(e.target)){
+    navLinks.classList.remove('active');
+    toggleBtn.querySelector('.menu-toggle-inner').textContent='☰';
+    homeDropdown.classList.remove('active');
+  }
+});
+
+// Password live validation
+const form = document.getElementById('loginForm');
+const passwordInput = document.getElementById('password');
+const passwordMsg = document.getElementById('password-msg');
+
+passwordInput.addEventListener('input', function() {
+  const password = passwordInput.value;
+  const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+  if(regex.test(password)){
+    passwordMsg.style.color='green';
+    passwordMsg.textContent='Password is strong ✅';
+  } else {
+    passwordMsg.style.color='red';
+    passwordMsg.textContent='Password must be at least 8 characters, include 1 uppercase and 1 special character';
+  }
+});
+
+form.addEventListener('submit', function(e) {
+  const password = passwordInput.value;
+  const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+  if(!regex.test(password)){
+    e.preventDefault();
+    passwordMsg.style.color='red';
+    passwordMsg.textContent='Password is invalid ❌';
+  }
+});
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo" style="width:150px;"></a></div>
+      <p>Stackly Internet Site provides high-speed, reliable, and secure internet solutions for homes and businesses across India.</p>
+      <div class="social-icons">
+        <a href="404error.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="404error.html"><i class="fab fa-linkedin-in"></i></a>
+        <a href="404error.html"><i class="fab fa-twitter"></i></a>
+        <a href="404error.html"><i class="fab fa-instagram"></i></a>
+        <a href="404error.html"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="Plans.html">Plans</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Coverage.html">Coverage</a></li>
+        <li><a href="Support.html">Support</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p><strong>Email:</strong> support@stackly.com</p>
+      <p><strong>Phone:</strong> +91 70107 92745</p>
+      <p><strong>Location:</strong> Bengaluru, Karnataka - 560068</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Stackly Internet Site. All rights reserved.</p></div>
+</footer>
+
+</body>
+</html>

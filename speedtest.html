@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speed Test | Stackly Internet</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:100%; overflow-x:hidden; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+a { text-decoration:none; color:#000; }
+
+/* HEADER */
+header { position: fixed; top:0; width:100%; background:#fff; z-index:1000; border-bottom:1px solid rgba(0,0,0,0.05); }
+nav { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; max-width:1200px; margin:auto; }
+.logo img { width:120px; height:auto; }
+.nav-links { list-style:none; display:flex; gap:20px; align-items:center; }
+.nav-links li { position:relative; }
+.nav-links a { padding:6px 8px; display:inline-block; font-weight:600; }
+.nav-links a:hover { color:#4CAF50; }
+
+/* DROPDOWN */
+.dropbtn { display:flex; align-items:center; gap:4px; cursor:pointer; }
+.dropdown-content { display:none; position:absolute; top:100%; left:0; background:#fff; min-width:160px; border-radius:6px; box-shadow:0 8px 20px rgba(0,0,0,0.08); z-index:50; }
+.dropdown-content a { display:block; padding:10px 14px; font-weight:500; }
+.dropdown-content a:hover { background:#f5f5f5; color:#4CAF50; }
+@media(min-width:901px){ .dropdown:hover .dropdown-content{ display:block; } }
+
+/* Hamburger */
+.menu-toggle { display:none; font-size:28px; background:none; border:none; cursor:pointer; }
+
+/* HERO */
+.hero { background:linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45));
+   /* url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat; */
+   background-image: url('Speedtest2.webp');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+    color:#fff; text-align:center; padding:120px 20px 100px; margin-top:64px; border-radius:12px; }
+.hero .eyebrow { color:#A6F6C6; font-weight:700; text-transform:uppercase; margin-bottom:10px; }
+.hero h1 { font-size:2.6em; font-weight:800; margin-bottom:14px; line-height:1.05; }
+.hero p { max-width:900px; margin:0 auto; font-size:1.05em; color:rgba(255,255,255,0.95); line-height:1.6; }
+
+/* SPEED TEST SECTION */
+.speed-test { max-width:1000px; margin:50px auto 80px; padding:0 20px; text-align:center; }
+.speed-test h2 { font-size:2em; margin-bottom:20px; color:#111; }
+.speed-test p { color:#555; line-height:1.6; margin-bottom:40px; }
+.test-box { background:#fff; padding:40px 30px; border-radius:15px; box-shadow:0 12px 30px rgba(10,20,40,0.06); transition:0.3s; }
+.test-box:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(10,20,40,0.09); }
+.test-box button { background:#4CAF50; color:#fff; border:none; padding:14px 32px; border-radius:30px; font-weight:700; font-size:1.1em; cursor:pointer; transition:0.3s; }
+.test-box button:hover { background:#43a047; transform:translateY(-2px); }
+.speed-result { margin-top:30px; font-size:1.3em; color:#1a73e8; font-weight:700; }
+
+/* FOOTER */
+.footer { background:linear-gradient(135deg,#0a3d91,#1e90ff); color:#fff; padding:50px 20px; }
+.footer-container { max-width:1200px; margin:auto; display:flex; justify-content:space-between; flex-wrap:wrap; }
+.footer-section { flex:1; min-width:260px; margin:15px 20px; }
+.footer-section h3 { color:#ffcc00; margin-bottom:15px; font-size:18px; font-weight:600; }
+.footer-section p, .footer-section ul li a { color:#d3d3d3; font-size:15px; }
+.footer-section ul { list-style:none; padding:0; }
+.footer-section ul li { margin-bottom:10px; }
+.footer-section ul li a:hover { color:#00ffae; }
+.social-icons a { color:#b8c6ff; margin-right:12px; font-size:18px; transition:0.3s; }
+.social-icons a:hover { color:#00ffae; }
+.footer-bottom { text-align:center; padding-top:20px; border-top:1px solid rgba(255,255,255,0.15); margin-top:30px; }
+.footer-bottom p { color:#c7c7c7; font-size:14px; }
+
+/* RESPONSIVE */
+@media(max-width:1024px){ .speed-test { padding:0 15px; } }
+@media(max-width:768px){
+  .menu-toggle{display:block;}
+  .nav-links{
+    position:fixed; top:0; left:-100%; width:75%; height:100vh; background:#fff; flex-direction:column; padding:80px 25px; gap:15px; transition:left 0.3s ease; overflow-y:auto; box-shadow:5px 0 20px rgba(0,0,0,0.2);
+  }
+  .nav-links.active{left:0;}
+  .nav-links li{width:100%;}
+  .nav-links a{font-size:18px; display:block; width:100%; padding:10px 0;}
+  .dropdown-content { position: relative !important; top:0; left:0; box-shadow:none; border-radius:0; display:none; }
+  .dropdown.active .dropdown-content { display:block; }
+  .dropdown-content a { padding-left:20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo"></a></div>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
+    <ul id="nav-links" class="nav-links">
+      <li class="dropdown">
+        <a href="Home2.html" class="dropbtn">Home <span class="arrow">▼</span></a>
+        <div class="dropdown-content">
+          <a href="index.html">Home 1</a>
+        </div>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="speedtest.html" style="color:#4CAF50;">Speed Test</a></li>
+      <li><a href="support2.html">Support</a></li>
+      <li><a href="login2.html">Login</a></li>
+      <li><a href="getconnected.html">Get Connected</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Speed Test</div>
+  <h1>Check your Internet Speed Instantly</h1>
+  <p>Test your current download and upload speed with our fast and accurate tool. See how your connection performs in real-time.</p>
+</section>
+
+<section class="speed-test">
+  <h2>Run Your Speed Test</h2>
+  <p>Click the button below to measure your internet speed in Mbps. Ideal for checking your fiber or broadband performance.</p>
+  <div class="test-box">
+    <button id="startTest">Start Speed Test</button>
+    <div class="speed-result" id="speedResult"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <div class="logo"><a href="index.html"><img src="Stacklylogo.webp" alt="Stackly Logo" style="width:150px;"></a></div>
+      <p>Stackly Internet provides high-speed, reliable, and secure internet solutions.</p>
+      <div class="social-icons">
+        <a href="402error.html"><i class="fab fa-facebook-f"></i></a>
+        <a href="402error.html"><i class="fab fa-linkedin-in"></i></a>
+        <a href="402error.html"><i class="fab fa-twitter"></i></a>
+        <a href="402error.html"><i class="fab fa-instagram"></i></a>
+        <a href="402error.html"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="Home2.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="packages.html">Packages</a></li>
+        <li><a href="speedtest.html" style="color:#fff;">Speed Test</a></li>
+        <li><a href="support2.html">Support</a></li>
+        <li><a href="login2.html">Login</a></li>
+        <li><a href="getconnected.html">Get Connected</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p><strong>Email:</strong> support@stackly.com</p>
+      <p><strong>Phone:</strong> +91 70107 92745</p>
+      <p><strong>Location:</strong> Bengaluru, Karnataka-560068</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Stackly Internet Site. All rights reserved.</p></div>
+</footer>
+
+<script>
+// MOBILE MENU
+const toggleBtn = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+toggleBtn.addEventListener('click', e=>{
+  e.stopPropagation();
+  navLinks.classList.toggle('active');
+  toggleBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+});
+
+dropdowns.forEach(drop=>{
+  const btn = drop.querySelector('.dropbtn');
+  const arrow = btn.querySelector('.arrow');
+  const content = drop.querySelector('.dropdown-content');
+
+  arrow.addEventListener('click', e=>{
+    if(window.innerWidth <= 768){
+      e.preventDefault();
+      e.stopPropagation();
+      dropdowns.forEach(d=>{
+        if(d!==drop){
+          d.classList.remove('active');
+          const c = d.querySelector('.dropdown-content');
+          if(c) c.style.display='none';
+        }
+      });
+      drop.classList.toggle('active');
+      content.style.display = drop.classList.contains('active') ? 'block' : 'none';
+    }
+  });
+
+  content.addEventListener('click', e=> e.stopPropagation());
+});
+
+document.addEventListener('click', ()=>{
+  if(window.innerWidth <= 768){
+    navLinks.classList.remove('active');
+    toggleBtn.textContent = '☰';
+    dropdowns.forEach(d=>{
+      d.classList.remove('active');
+      const c = d.querySelector('.dropdown-content');
+      if(c) c.style.display='none';
+    });
+  }
+});
+
+window.addEventListener('resize', ()=>{
+  if(window.innerWidth > 768){
+    navLinks.classList.remove('active');
+    toggleBtn.textContent = '☰';
+    dropdowns.forEach(d=>{
+      d.classList.remove('active');
+      const c = d.querySelector('.dropdown-content');
+      if(c) c.style.display='';
+    });
+  }
+});
+
+// SPEED TEST SIMULATION
+const startBtn = document.getElementById('startTest');
+const result = document.getElementById('speedResult');
+startBtn.addEventListener('click', ()=>{
+  result.textContent = "Testing...";
+  setTimeout(()=>{
+    const download = (Math.random()*200 + 20).toFixed(2);
+    const upload = (Math.random()*50 + 5).toFixed(2);
+    result.textContent = `Download: ${download} Mbps | Upload: ${upload} Mbps`;
+  }, 1500);
+});
+</script>
+
+</body>
+</html>
